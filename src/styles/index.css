@@ -1,0 +1,275 @@
+body {
+    background-color: rgb(31, 34, 43);
+    padding: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+
+}
+
+#root {
+    width: 100%;
+}
+
+.calculator_container {
+    display: block;
+    margin: auto;
+    width: min-content;
+    background: rgba(0, 0, 0, .5);
+
+}
+
+#display {
+    max-width: 100%;
+    min-height: 60px;
+    background: black;
+    color: white;
+}
+
+.operations_container {
+    display: grid;
+    grid-template-rows: repeat(5, 60px);
+    grid-template-columns: repeat(4, 60px);
+    grid-template-areas: "Clean Clean Divide Multiply"
+        "Numbers Numbers Numbers Add"
+        "Numbers Numbers Numbers Substract"
+        "Numbers Numbers Numbers Equals"
+        "Numbers Numbers Numbers Equals"
+    ;
+    gap: 6px;
+    padding: 5px;
+}
+
+.numbers_container {
+    grid-area: Numbers;
+    display: grid;
+    grid-template-rows: repeat(4, 60px);
+    grid-template-columns: repeat(3, 60px);
+    grid-template-areas: ". . ."
+        ". . ."
+        ". . ."
+        "zero zero .";
+    gap: 6px;
+}
+
+.numbers:nth-child(11) {
+    font-size: 28px;
+}
+
+.numbers:nth-child(10) {
+    grid-area: zero;
+}
+
+#clean {
+    grid-area: Clean;
+    color: #ff1616;
+}
+
+#divide {
+    grid-area: Divide;
+}
+
+#multiply {
+    grid-area: Multiply;
+}
+
+#add {
+    grid-area: Add;
+}
+
+#substract {
+    grid-area: Substract;
+}
+
+#equals {
+    grid-area: Equals;
+    color: #0059ff;
+    font-size: 20px;
+}
+
+.buttons_animations {
+    position: relative;
+    background: transparent;
+    overflow: hidden;
+    color: #03e9f4;
+    border: none;
+    transition: .5s;
+    font-size: 16px
+}
+
+.buttons_animations:focus {
+    background: #03e9f4;
+    color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 5px #03e9f4,
+        0 0 25px #03e9f4,
+        0 0 50px #03e9f4,
+        0 0 100px #03e9f4;
+}
+
+#clean:focus {
+    background: #ff1616;
+    color: #fff;
+    box-shadow: 0 0 5px #ff1616,
+        0 0 25px #ff1616,
+        0 0 50px #ff1616,
+        0 0 100px #ff1616;
+}
+
+#clean span:nth-child(1) {
+    background: linear-gradient(90deg, transparent, #ff1616);
+}
+
+#clean span:nth-child(2) {
+    background: linear-gradient(180deg, transparent, #ff1616);
+}
+
+#clean span:nth-child(3) {
+    background: linear-gradient(270deg, transparent, #ff1616);
+}
+
+#clean span:nth-child(4) {
+    background: linear-gradient(360deg, transparent, #ff1616);
+}
+
+#equals:focus {
+    background: #0905f3;
+    color: #fff;
+    box-shadow: 0 0 5px #0905f3,
+        0 0 25px #0905f3,
+        0 0 50px #0905f3,
+        0 0 100px #0905f3;
+}
+
+#equals span:nth-child(1) {
+    background: linear-gradient(90deg, transparent, #0905f3);
+}
+
+#equals span:nth-child(2) {
+    background: linear-gradient(180deg, transparent, #0905f3);
+}
+
+#equals span:nth-child(3) {
+    background: linear-gradient(270deg, transparent, #0905f3);
+}
+
+#equals span:nth-child(4) {
+    background: linear-gradient(360deg, transparent, #0905f3);
+}
+
+.operators {
+    color: #a20187;
+    font-size: 20px;
+}
+
+.operators:focus {
+    background: #a20187;
+    color: #fff;
+    box-shadow: 0 0 5px #a20187,
+        0 0 25px #a20187,
+        0 0 50px #a20187,
+        0 0 100px #a20187;
+}
+
+.buttons_animations span {
+    position: absolute;
+}
+
+.buttons_animations span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+    animation: btn-anim1 1s linear infinite;
+}
+
+.operators span:nth-child(1) {
+    background: linear-gradient(90deg, transparent, #a20187);
+}
+
+@keyframes btn-anim1 {
+    0% {
+        left: -100%;
+    }
+
+    50%,
+    100% {
+        left: 100%;
+    }
+}
+
+.buttons_animations span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: btn-anim2 1s linear infinite;
+    animation-delay: .25s
+}
+
+.operators span:nth-child(2) {
+    background: linear-gradient(180deg, transparent, #a20187);
+}
+
+@keyframes btn-anim2 {
+    0% {
+        top: -100%;
+    }
+
+    50%,
+    100% {
+        top: 100%;
+    }
+}
+
+.buttons_animations span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: btn-anim3 1s linear infinite;
+    animation-delay: .5s;
+}
+
+.operators span:nth-child(3) {
+    background: linear-gradient(270deg, transparent, #a20187);
+}
+
+@keyframes btn-anim3 {
+    0% {
+        right: -100%;
+    }
+
+    50%,
+    100% {
+        right: 100%;
+    }
+}
+
+.buttons_animations span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 3px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: btn-anim4 1s linear infinite;
+    animation-delay: .75s
+}
+
+.operators span:nth-child(4) {
+    background: linear-gradient(360deg, transparent, #a20187);
+}
+
+@keyframes btn-anim4 {
+    0% {
+        bottom: -100%;
+    }
+
+    50%,
+    100% {
+        bottom: 100%;
+    }
+}
