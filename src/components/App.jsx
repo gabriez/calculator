@@ -1,13 +1,16 @@
 import { useState } from "react";
 import "../styles/index.css";
+import "../assets/technology/Technology-Bold.ttf"
 
 const App = () => {
     const [operations, useOperations] = useState(["0"]);
-    const [result, setResult] = useState()
+    const [result, setResult] = useState();
+    const [show, setShow] = useState(true);
 
     const clear = () => {
-        useOperations(["0"])
-        setResult()
+        useOperations(["0"]);
+        setShow(true);
+        setResult();
     }
 
     const doOperations = (op) => {
@@ -54,7 +57,8 @@ const App = () => {
                 i--;
             }
         }
-        setResult([...arrayToOperate])
+        setResult([...arrayToOperate]);
+        setShow(false);
     }
 
     const addNumbers = (val) => {
@@ -65,11 +69,13 @@ const App = () => {
             let regexOp = /\+|-|\*|\//;
             let arrayLen = current.length;
 
-            if (current[0] == "0" && val != ".") {
+            setShow(true);
+            if (current[0] == "0" && val != "." || /\+|\*|\//.test(current[0])) {
                 return [val];
             }
 
-            if ((regexStr.test(current[arrayLen - 1]) || /-/.test(current[arrayLen - 1]) && regexOp.test(current[arrayLen - 2]))
+
+            if ((regexStr.test(current[arrayLen - 1]) || /-/.test(current[arrayLen - 1]) && (regexOp.test(current[arrayLen - 2]) || arrayLen == 1))
                 && regexStr.test(val)) {
 
                 if (result) {
@@ -77,13 +83,14 @@ const App = () => {
                     return [val]
                 }
 
+
                 if (current[arrayLen - 1].length == 1 && current[arrayLen - 1] == "0" && val != ".") {
                     current[arrayLen - 1] = val;
                     return [...current];
                 }
 
                 if (/\./.test(current[arrayLen - 1]) && val == ".") {
-
+                    return [...current];
                 }
 
                 addStr = current[arrayLen - 1] + val;
@@ -94,12 +101,18 @@ const App = () => {
             if (regexOp.test(current[arrayLen - 1]) && !regexStr.test(val) && !regexStr.test(current[arrayLen - 1])) {
                 addStr = val;
 
-                if (/-/.test(val) && !regexOp.test(current[arrayLen - 2])) {
+
+                if (val == '-' && arrayLen == 1) {
+
+                    return [val];
+                }
+
+                if (/-/.test(val) && (!regexOp.test(current[arrayLen - 2]) || /-[0-9]/.test(current[arrayLen - 2]))) {
+                    console.log(true);
                     return [...current, val];
                 }
 
                 if (/\+|\*|\//.test(val) && regexOp.test(current[arrayLen - 2]) && !regexStr.test(current[arrayLen - 1])) {
-                    console.log(regexStr.test(current[arrayLen - 1]));
                     current.splice(arrayLen - 2, 2, val);
                     return [...current];
                 }
@@ -117,11 +130,13 @@ const App = () => {
         })
 
     }
-
+    console.log(operations);
     return (
         <div className="calculator_container">
-            <div id="display">{operations.map((item, index) => (<span key={index}> {item} </span>))}
-                {result && (<span>= {result}</span>)}</div>
+            <div id="display">{operations.map((item, index) => (<span className="operations_display" key={index}> {item} </span>))}
+                {result && (<span>= {result}</span>)}
+                <div> {show ? operations[operations.length - 1] : (<>={result}</>)}  </div>
+            </div>
             <div className="operations_container">
                 <button onClick={clear} id="clean" className="buttons_animations">AC
                     <span></span>

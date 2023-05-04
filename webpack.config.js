@@ -26,7 +26,9 @@ module.exports = {
     target: target,
     entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
+        assetModuleFilename: 'assets/[name][ext][query]',
+        clean: true
     },
     module: {
         rules: [
@@ -46,6 +48,10 @@ module.exports = {
                 'css-loader', 
                 'postcss-loader'
                 ]
+            },
+            {
+                test: /\.ttf$/i,
+                type: 'asset/resource'
             }
         ]
     },

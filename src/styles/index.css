@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Technology-Bold';
+    src: url('../assets/technology/Technology-Bold.ttf');
+}
+
 body {
     background-color: rgb(31, 34, 43);
     padding: 0;
@@ -21,10 +26,26 @@ body {
 
 #display {
     max-width: 100%;
-    min-height: 60px;
+    min-height: fit-content;
     background: black;
-    color: white;
+    color: #03e9f4;
+    text-align: right;
+    padding: 10px 10px 5px;
+    font-family: 'Technology-Bold';
+    font-size: 16px;
+    letter-spacing: 1.5px;
 }
+
+#display div {
+    margin-top: 4px;
+    font-size: 20px;
+    color: #ff1616;
+}
+
+/* .operations_display{
+    text-align: left;
+} */
+
 
 .operations_container {
     display: grid;
