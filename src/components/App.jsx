@@ -108,7 +108,7 @@ const App = () => {
                 }
 
                 if (/-/.test(val) && (!regexOp.test(current[arrayLen - 2]) || /-[0-9]/.test(current[arrayLen - 2]))) {
-                    console.log(true);
+
                     return [...current, val];
                 }
 
@@ -130,7 +130,7 @@ const App = () => {
         })
 
     }
-    console.log(operations);
+
     return (
         <div className="calculator_container">
             <div id="display">{operations.map((item, index) => (<span className="operations_display" key={index}> {item} </span>))}
