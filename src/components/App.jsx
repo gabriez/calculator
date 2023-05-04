@@ -42,7 +42,7 @@ const App = () => {
         }
 
         for (let i = 0; i < arrayToOperate.length; i++) {
-            console.log(/-|\+/.test(arrayToOperate[i + 1]));
+
             if (regexStr.test(arrayToOperate[i]) && regexStr.test(arrayToOperate[i + 2]) && /-|\+/.test(arrayToOperate[i + 1])) {
                 console.log("showme")
                 if (arrayToOperate[i + 1] == "+") {
