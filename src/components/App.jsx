@@ -135,7 +135,7 @@ const App = () => {
         <div className="calculator_container">
             <div id="display">{operations.map((item, index) => (<span className="operations_display" key={index}> {item} </span>))}
                 {result && (<span>= {result}</span>)}
-                <div> {show ? operations[operations.length - 1] : (<>={result}</>)}  </div>
+                <div> {show ? operations[operations.length - 1] : (<>= {result}</>)}  </div>
             </div>
             <div className="operations_container">
                 <button onClick={clear} id="clean" className="buttons_animations">AC
